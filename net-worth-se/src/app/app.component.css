@@ -1,0 +1,7 @@
+.footer-text {
+    margin: 0 auto;
+}
+
+nav > a:first-of-type {
+    margin-right: 1em;
+}

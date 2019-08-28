@@ -1,0 +1,11 @@
+<section class="resource container-child">
+  <div class="flex flex-space-btwn">
+    <h3>{{property}}</h3>
+    <!-- <div class="flex">
+        <input type="button" class="sheet-button res-add-item" value="Add Item"/>
+        <input type="button" class="sheet-button" value="Delete {{property}}"/>
+    </div> -->
+  </div>
+  <item *ngFor="let item of items | keyvalue" [item]="item.key" [value]="item.value"></item>
+</section>
+<!-- (deleteItem)="deleteItem($event)" -->

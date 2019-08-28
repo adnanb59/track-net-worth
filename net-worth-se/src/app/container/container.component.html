@@ -1,0 +1,14 @@
+<nav class="top-level-content">
+    <h2>Currency</h2>
+    <h2>{{obj.Currency}}</h2>
+</nav>
+<article class="top-level-content container" id="net-worth">
+    <h2>Net Worth</h2>
+    <h2>{{obj.Totals.Assets - obj.Totals.Liabilities | currency:obj.Currency:''}}</h2> 
+</article>
+<sheet-form category="Assets" [total]="obj.Totals.Assets" [properties]="obj.Assets"></sheet-form>
+<sheet-form category="Liabilities" [total]="obj.Totals.Liabilities" [properties]="obj.Liabilities"></sheet-form>
+<section id="sheet-buttons">
+    <input type="button" class="sheet-button" value="Upload Sheet" />
+    <input type="button" class="sheet-button" value="Download Sheet" />
+</section>

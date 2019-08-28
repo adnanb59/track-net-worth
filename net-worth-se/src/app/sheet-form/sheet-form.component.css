@@ -1,0 +1,15 @@
+.container > :first-child {
+    border-bottom: 2px solid black;
+}
+
+.add-slider {
+    margin-bottom: 1em;
+}
+
+.add-slider > input[type='text'] {
+    width: 50%;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid black;
+    padding: .25em;
+}

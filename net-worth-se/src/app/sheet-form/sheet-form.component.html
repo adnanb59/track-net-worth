@@ -1,0 +1,17 @@
+<article class="container">
+  <section class="container-child">
+    <div class="flex flex-space-btwn">
+      <h2>{{category}}</h2>
+      <!-- <input type="button" class="sheet-button" (click)="status = !status" value="{{!status ? 'Add Resource' : 'Close Form'}}"/> -->
+    </div>
+    <!-- <div *ngIf="status" class="flex flex-space-btwn add-slider">
+      <input type="text" #resource placeholder="Label" (keyup)="0"/>
+      <input type="button" class="sheet-button" value="Add" [disabled]="!resource.value"/>
+    </div> -->
+  </section>
+  <resource *ngFor="let prop of properties | keyvalue" [property]="prop.key" [items]="prop.value"></resource>
+  <div class="flex flex-space-btwn container-child">
+    <h2>Total {{category}}</h2>
+    <h2>{{total | currency:'':''}}</h2>
+  </div>
+</article>

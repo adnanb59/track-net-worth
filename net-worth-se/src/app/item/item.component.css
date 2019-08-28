@@ -1,0 +1,38 @@
+.item {
+    margin-bottom: 0.25em;
+}
+
+.item-error {
+    border: 2px solid red;
+}
+
+.item-label-section > h4 {
+    margin: 0 0 0 1em;
+}
+
+.item-input {
+    width: 50%;
+    border-radius: 5px;
+    font-size: 16px;
+    padding: 0.25em;
+    text-align: right;
+}
+
+.item-input:not(.item-error) {
+    border: 2px solid black;
+}
+
+.item-icon {
+    width: 24px;
+    height: 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.item-add {
+    background-image: url('../../assets/plus.png');
+}
+
+.item-delete {
+    background-image: url('../../assets/minus.png');
+}

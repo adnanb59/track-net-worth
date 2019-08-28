@@ -1,0 +1,41 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    min-width: 650px;
+    max-width: 900px;
+    margin: auto;
+}
+
+.top-level-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.top-level-content:first-of-type {
+    margin-bottom: 2em;
+}
+
+.top-level-content > h2 {
+    margin: 0;
+}
+
+#sheet-buttons {
+    display: flex;
+    justify-content: flex-end;
+}
+
+#sheet-buttons > :first-of-type {
+    margin-right: 1em;
+}
+
+#currency-select {
+    padding: .5em;
+    border-radius: 5px;
+    width: 20%;
+    font-size: 16px;
+}
+
+#net-worth {
+    padding: 1em;
+}
