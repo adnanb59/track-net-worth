@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { DataService } from '../data.service';
 
 @Component({
   selector: 'item',
@@ -7,20 +7,22 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./item.component.css']
 })
 export class ItemComponent implements OnInit {
-  @Input() item: String;
+  @Input() item: string;
   @Input() value: number;
-  // @Output() deleteItem = new EventEmitter<String>();
+  @Output() itemUpdate = new EventEmitter<Object>();
 
-  public error: boolean;
-
-  constructor() {
-    this.error = false;
-   }
+  constructor(private dataService : DataService) {
+  }
 
   ngOnInit() {
   }
 
-  // removeItem() {
-  //   this.deleteItem.emit(this.item);
-  // };
+  updateItem(e: any) {
+    let potentialValue = (e.target.value) ? Number(e.target.value) : 0;
+    if (potentialValue >= 0 && potentialValue * 100 % 1 == 0 && (potentialValue - this.value) !== 0) {
+      this.itemUpdate.emit({[this.item]: potentialValue});
+    } else {
+      e.target.value = this.value;
+    }
+  }
 }

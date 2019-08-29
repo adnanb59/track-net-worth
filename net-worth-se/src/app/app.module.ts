@@ -10,6 +10,7 @@ import { SheetFormComponent } from './sheet-form/sheet-form.component';
 import { ResourceComponent } from './resource/resource.component';
 import { ItemComponent } from './item/item.component';
 import { CreditsComponent } from './credits/credits.component';
+import { DataService } from './data.service';
 
 const appRoutes: Routes = [
   {path: '', component: ContainerComponent},
@@ -31,7 +32,7 @@ const appRoutes: Routes = [
     BrowserModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

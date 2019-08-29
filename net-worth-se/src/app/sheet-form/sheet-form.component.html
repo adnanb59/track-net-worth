@@ -9,7 +9,7 @@
       <input type="button" class="sheet-button" value="Add" [disabled]="!resource.value"/>
     </div> -->
   </section>
-  <resource *ngFor="let prop of properties | keyvalue" [property]="prop.key" [items]="prop.value"></resource>
+  <resource *ngFor="let prop of properties" (update)="updateProperty($event)" [parent]="category.toLowerCase()" [property]="prop.key" [items]="prop.items" [total]="prop.total"></resource>
   <div class="flex flex-space-btwn container-child">
     <h2>Total {{category}}</h2>
     <h2>{{total | currency:'':''}}</h2>

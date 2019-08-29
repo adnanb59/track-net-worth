@@ -6,6 +6,6 @@
         <input type="button" class="sheet-button" value="Delete {{property}}"/>
     </div> -->
   </div>
-  <item *ngFor="let item of items | keyvalue" [item]="item.key" [value]="item.value"></item>
+  <item *ngFor="let item of items" (itemUpdate)="updateItem($event)" [item]="item.label" [value]="item.value"></item>
 </section>
 <!-- (deleteItem)="deleteItem($event)" -->

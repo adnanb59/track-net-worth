@@ -9,9 +9,9 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.adnan</groupId>
-	<artifactId>networth</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
-	<name>networth</name>
+	<artifactId>net-worth</artifactId>
+	<version>0.0.1</version>
+	<name>Net Worth App</name>
 	<description>Track Your Net Worth Server</description>
 
 	<properties>
