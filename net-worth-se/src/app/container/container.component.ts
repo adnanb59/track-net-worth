@@ -29,6 +29,14 @@ export class ContainerComponent implements OnInit {
     });
   }
 
+  addAsset(o: Array<Object>) {
+    this.assets = o;
+  }
+
+  addLiability(o: Array<Object>) {
+    this.liabilities = o;
+  }
+
   updateAssets(v: number) {
     this.assetsTotal += v;
   }

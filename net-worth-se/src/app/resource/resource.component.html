@@ -1,11 +1,12 @@
 <section class="resource container-child">
   <div class="flex flex-space-btwn">
     <h3>{{property}}</h3>
-    <div class="flex">
+    <!-- <div class="flex">
         <input type="button" class="sheet-button res-add-item" (click)="showNewForm = !showNewForm" value="{{!showNewForm ? 'Show' : 'Hide'}} Add Item Form"/>
-        <input class="add-input" *ngIf="showNewForm" type="text"/>
-        <input type="button" class="sheet-button" value="Delete {{property}}"/>
-    </div>
+        <input class="add-input" *ngIf="showNewForm" [(ngModel)]="newItem" type="text"/>
+        <input type="button" *ngIf="showNewForm" class="sheet-button submit-button" (click)="addItem(newItem)" value="Submit"/>
+        <input type="button" class="sheet-button" (click)="deleteResource($event)" value="Delete {{property}}"/>
+    </div> -->
   </div>
-  <item *ngFor="let item of items" (itemUpdate)="updateItem($event)" [item]="item.label" [value]="item.value"></item>
+  <item *ngFor="let item of items" (itemUpdate)="updateItem($event)" (itemDelete)="deleteItem($event)" [item]="item.label" [value]="item.value"></item>
 </section>

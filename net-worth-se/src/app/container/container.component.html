@@ -6,5 +6,5 @@
     <h2>Net Worth</h2>
     <h2>{{assetsTotal - liabilitiesTotal | currency:'CAD':''}}</h2> 
 </article>
-<sheet-form category="Assets" (childTotalChange)="updateAssets($event)" [properties]="assets"></sheet-form>
-<sheet-form category="Liabilities" (childTotalChange)="updateLiabilities($event)" [properties]="liabilities"></sheet-form>
+<sheet-form category="Assets" (add)="addAsset($event)" (childTotalChange)="updateAssets($event)" [properties]="assets"></sheet-form>
+<sheet-form category="Liabilities" (add)="addLiability($event)" (childTotalChange)="updateLiabilities($event)" [properties]="liabilities"></sheet-form>

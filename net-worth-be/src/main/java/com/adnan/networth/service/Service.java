@@ -79,7 +79,6 @@ public class Service {
 
     public Resource updateResourceItem(String type, String asset, Map<String, Double> item) {
         Property ret = this.repo.get(type);
-        System.out.println(item);
         String s = item.keySet().iterator().next();
         if (ret.resources.get(asset).items.containsKey(s)) {
             ret.resources.get(asset).updateItem(s, item.get(s));

@@ -10,6 +10,7 @@ export class ItemComponent implements OnInit {
   @Input() item: string;
   @Input() value: number;
   @Output() itemUpdate = new EventEmitter<Object>();
+  @Output() itemDelete = new EventEmitter<Object>();
 
   constructor(private dataService : DataService) {
   }
@@ -24,5 +25,9 @@ export class ItemComponent implements OnInit {
     } else {
       e.target.value = this.value;
     }
+  }
+
+  deleteItem(e: any) {
+    this.itemDelete.emit({[this.item]: this.value});
   }
 }
