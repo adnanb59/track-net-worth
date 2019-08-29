@@ -10,13 +10,14 @@ export class SheetFormComponent implements OnInit {
   @Input() properties: Array<Object>;
   @Input() category: String;
   @Output() childTotalChange = new EventEmitter<number>();
-  public status: Boolean;
+  public showForm: Boolean;
   public total: number;
+
   constructor() { 
-    this.status = false;
   }
 
   ngOnInit() {
+    this.showForm = false;
   }
 
   updateProperty(v: number) {

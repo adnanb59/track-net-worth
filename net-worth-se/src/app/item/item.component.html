@@ -1,6 +1,6 @@
 <div class="flex flex-space-btwn item">
   <div class="flex item-label-section">
-    <!-- <div class="item-icon item-delete" (click)="removeItem()"></div> -->
+    <div class="item-icon item-delete"></div>
     <h4>{{item}}</h4>
   </div>
   <input type="number" class="item-input" [ngClass]="{'item-error': error}" [value]="value" min="0" step="1" pattern="^\d*.\d{0,2}$" (blur)="updateItem($event)"/>

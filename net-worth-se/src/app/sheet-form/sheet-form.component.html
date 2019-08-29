@@ -2,12 +2,11 @@
   <section class="container-child">
     <div class="flex flex-space-btwn">
       <h2>{{category}}</h2>
-      <!-- <input type="button" class="sheet-button" (click)="status = !status" value="{{!status ? 'Add Resource' : 'Close Form'}}"/> -->
+      <div class="flex">
+        <input type="button" class="sheet-button" (click)="showForm = !showForm" value="{{!showForm ? 'Show' : 'Hide'}} Add Resource Form"/>
+        <input class="add-input" *ngIf="showForm" type="text"/>
+      </div>
     </div>
-    <!-- <div *ngIf="status" class="flex flex-space-btwn add-slider">
-      <input type="text" #resource placeholder="Label" (keyup)="0"/>
-      <input type="button" class="sheet-button" value="Add" [disabled]="!resource.value"/>
-    </div> -->
   </section>
   <resource *ngFor="let prop of properties" (update)="updateProperty($event)" [parent]="category.toLowerCase()" [property]="prop.key" [items]="prop.items" [total]="prop.total"></resource>
   <div class="flex flex-space-btwn container-child">

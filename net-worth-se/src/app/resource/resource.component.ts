@@ -13,9 +13,12 @@ export class ResourceComponent implements OnInit {
   @Input() parent: string;
   @Input() total: number;
   @Output() update = new EventEmitter<number>();
+  public showNewForm: boolean;
+
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
+    this.showNewForm = false;
   }
 
 
