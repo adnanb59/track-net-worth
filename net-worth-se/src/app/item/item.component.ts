@@ -10,12 +10,16 @@ export class ItemComponent implements OnInit {
   @Input() item: string;
   @Input() value: number;
   @Output() itemUpdate = new EventEmitter<Object>();
-  @Output() itemDelete = new EventEmitter<Object>();
+  @Output() itemDelete = new EventEmitter<string>();
 
   constructor(private dataService : DataService) {
   }
 
   ngOnInit() {
+  }
+
+  updateItemButton(delta: number) {
+    if (this.value != 0 || delta != -1) this.itemUpdate.emit({[this.item]: this.value + delta});
   }
 
   updateItem(e: any) {
@@ -27,7 +31,7 @@ export class ItemComponent implements OnInit {
     }
   }
 
-  deleteItem(e: any) {
-    this.itemDelete.emit({[this.item]: this.value});
+  deleteItem() {
+    this.itemDelete.emit(this.item);
   }
 }

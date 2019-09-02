@@ -87,13 +87,13 @@ public class Service {
         return ret.resources.get(asset);
     }
 
-    public Resource deleteResourceItem(String type, String asset, Map<String, Double> item) {
+    public boolean deleteResourceItem(String type, String asset, String item) {
         Property ret = this.repo.get(type);
-        String s = item.keySet().iterator().next();
-        if (!ret.resources.get(asset).items.containsKey(s)) {
-            ret.resources.get(asset).removeItem(s);
+        boolean exists = ret.resources.get(asset).items.containsKey(item);
+        if (exists) {
+            ret.resources.get(asset).removeItem(item);
             this.repo.put(type, ret);
         }
-        return ret.resources.get(asset);
+        return exists;
     }
 }

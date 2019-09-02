@@ -3,13 +3,12 @@ package com.adnan.networth.web;
 import com.adnan.networth.objs.Resource;
 import com.adnan.networth.service.Service;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
+import java.util.HashMap;
 import java.util.Map;
 
 @CrossOrigin(origins = "http://localhost:4200")
@@ -33,7 +32,7 @@ public class Controller {
          return this.service.addResource(type, target);
     }
 
-    @DeleteMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
+    @DeleteMapping()
     public Iterable<Resource> deleteResource(@RequestParam String prop, @PathVariable String type) throws UnsupportedEncodingException {
         String cleanProp = java.net.URLDecoder.decode(prop, StandardCharsets.UTF_8.name());
         return this.service.deleteResource(type, cleanProp);
@@ -51,9 +50,13 @@ public class Controller {
         return this.service.updateResourceItem(type, cleanProp, item);
     }
 
-    @DeleteMapping(path="/items", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public Resource deleteItemFromResource(@RequestParam String prop, @RequestBody Map<String, Double> item, @PathVariable String type) throws UnsupportedEncodingException {
-        String cleanProp = java.net.URLDecoder.decode(prop, StandardCharsets.UTF_8.name());
-        return this.service.deleteResourceItem(type, cleanProp, item);
+    @DeleteMapping(path="/items")
+    public Map<String, String> deleteItemFromResource(@RequestParam String prop, @RequestParam String item, @PathVariable String type) throws UnsupportedEncodingException {
+        Map<String, String> data = new HashMap<String, String>();
+        String s = this.service.deleteResourceItem(type,
+                java.net.URLDecoder.decode(prop, StandardCharsets.UTF_8.name()),
+                java.net.URLDecoder.decode(item, StandardCharsets.UTF_8.name())) ? item : null;
+        data.put("data", s);
+        return data;
     }
 }

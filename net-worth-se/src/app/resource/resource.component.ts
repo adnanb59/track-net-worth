@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { DataService } from '../data.service';
 
 @Component({
@@ -12,7 +11,7 @@ export class ResourceComponent implements OnInit {
   @Input() items: Array<Object>;
   @Input() parent: string;
   @Input() total: number;
-  @Output() update = new EventEmitter<number>();
+  @Output() updateTotal = new EventEmitter<number>();
   @Output() delete = new EventEmitter<Object>();
   public newItem: string;
   public showNewForm: boolean;
@@ -25,32 +24,41 @@ export class ResourceComponent implements OnInit {
   }
 
   addItem() {
+    console.log(this.newItem);
     if (this.newItem != "") {
       this.dataService.addItem(this.parent, this.property, {[this.newItem]: 0}).subscribe((data: any) => {
-        alert(data);
-        this.items = data;
+        this.items = data.items;
         this.newItem = "";
+        this.showNewForm = false;
       });
     }
   }
 
-  deleteItem(o: Object) {
-    this.dataService.deleteItem(this.parent, this.property, o).subscribe(data => {
-      this.items = data['items'];
-      this.update.emit(data['total'] - this.total);
-      this.total = data['total'];
+  checkValidNewItem() {
+    let c = this.newItem === "" || this.items.findIndex(item => item['label'] === this.newItem) != -1;
+    return c;
+  }
+
+  deleteItem(s: string) {
+    this.dataService.deleteItem(this.parent, this.property, s).subscribe(data => {
+      if (data['data']) {
+        let idx = this.items.findIndex(item => item['label'] === data['data']);
+        let change = this.items.splice(idx, 1)[0]['value'];
+        this.total -= change;
+        this.updateTotal.emit(change*-1);
+      }
     });
   }
 
   updateItem(o: Object) {
     this.dataService.updateItem(this.parent, this.property, o).subscribe(data => {
       this.items = data['items'];
-      this.update.emit(data['total'] - this.total);
+      this.updateTotal.emit(data['total'] - this.total);
       this.total = data['total'];
     });
   }
 
-  deleteResource(e: any) {
+  deleteResource() {
     this.dataService.deleteResource(this.parent, this.property).subscribe(data => {
       this.delete.emit(data);
     });

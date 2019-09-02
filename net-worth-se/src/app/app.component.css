@@ -2,6 +2,11 @@
     margin: 0 auto;
 }
 
+footer {
+    padding-bottom: 1em;
+    margin-top: auto;
+}
+
 nav > a:first-of-type {
     margin-right: 1em;
 }

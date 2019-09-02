@@ -1,7 +1,11 @@
 <div class="flex flex-space-btwn item">
   <div class="flex item-label-section">
-    <!-- <div class="item-icon item-delete" (click)="deleteItem()"></div> -->
+    <div class="item-icon item-delete" (click)="deleteItem()"></div>
     <h4>{{item}}</h4>
   </div>
-  <input type="number" class="item-input" [ngClass]="{'item-error': error}" [value]="value" min="0" step="1" pattern="^\d*.\d{0,2}$" (blur)="updateItem($event)"/>
+  <div>
+    <input type="button" class="sheet-button" value="-" (click)="updateItemButton(-1)"/>
+    <input type="number" class="item-input" [ngClass]="{'item-error': error}" [value]="value" min="0" step="1" pattern="^\d*.\d{0,2}$" (blur)="updateItem($event)"/>
+    <input type="button" class="sheet-button" value="+" (click)="updateItemButton(1)"/>
+  </div>
 </div>

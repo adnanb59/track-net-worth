@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.adnan</groupId>
 	<artifactId>net-worth</artifactId>
-	<version>0.0.1</version>
+	<version>1.0.0</version>
 	<name>Net Worth App</name>
 	<description>Track Your Net Worth Server</description>
 

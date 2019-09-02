@@ -4,6 +4,7 @@
     min-width: 650px;
     max-width: 900px;
     margin: auto;
+    min-height: 78vh;
 }
 
 .top-level-content {

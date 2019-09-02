@@ -29,7 +29,7 @@ export class DataService {
     return this.http.patch(this.base + prop + "/items?prop=" + encodeURIComponent(resource), body);
   }
 
-  deleteItem(prop: string, resource: string, body: Object) {
-    return this.http.delete(this.base + prop + "/items?prop=" + encodeURIComponent(resource), body);
+  deleteItem(prop: string, resource: string, item: string) {
+    return this.http.delete(this.base + prop + "/items?prop=" + encodeURIComponent(resource) + "&item=" + encodeURIComponent(item));
   }
 }

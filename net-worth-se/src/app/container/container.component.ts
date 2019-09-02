@@ -10,22 +10,28 @@ import { DataService } from '../data.service';
 export class ContainerComponent implements OnInit {
   public assets: Array<Object>;
   public liabilities: Array<Object>;
-  public assetsTotal: number;
-  public liabilitiesTotal: number;
+  public total: number;
   
+  // TODO: Currency dropdown
+  // TODO: Language & locale stuff
+  // TODO: Language stuff
+  // TODO: Build stuff & refactoring
+  // TODO: Media Queries and Responsive Design
+  // TODO: File upload/download
+  // TODO: Move stuff to frontend, pack and move to public
+
   constructor(private dataService : DataService) {
   }
 
   ngOnInit() {
-    this.assetsTotal = 0;
-    this.liabilitiesTotal = 0;
+    this.total = 0;
     this.dataService.getProperty("assets").subscribe((data: any) => {
       this.assets = data;
-      this.assetsTotal = data.reduce((a, v) => a + v['total'], 0);
+      this.total += data.reduce((a, v) => a + v['total'], 0);
     });
     this.dataService.getProperty("liabilities").subscribe((data: any) => {
       this.liabilities = data;
-      this.liabilitiesTotal = data.reduce((a, v) => a + v['total'], 0);
+      this.total -= data.reduce((a, v) => a + v['total'], 0);
     });
   }
 
@@ -33,15 +39,11 @@ export class ContainerComponent implements OnInit {
     this.assets = o;
   }
 
+  update(v: number) {
+    this.total += v;
+  }
+
   addLiability(o: Array<Object>) {
     this.liabilities = o;
-  }
-
-  updateAssets(v: number) {
-    this.assetsTotal += v;
-  }
-
-  updateLiabilities(v: number) {
-    this.liabilitiesTotal += v;
   }
 }

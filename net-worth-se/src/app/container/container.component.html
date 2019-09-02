@@ -4,7 +4,7 @@
 </nav>
 <article class="top-level-content container" id="net-worth">
     <h2>Net Worth</h2>
-    <h2>{{assetsTotal - liabilitiesTotal | currency:'CAD':''}}</h2> 
+    <h2>{{total | currency:'CAD':''}}</h2> 
 </article>
-<sheet-form category="Assets" (add)="addAsset($event)" (childTotalChange)="updateAssets($event)" [properties]="assets"></sheet-form>
-<sheet-form category="Liabilities" (add)="addLiability($event)" (childTotalChange)="updateLiabilities($event)" [properties]="liabilities"></sheet-form>
+<property category="Assets" (add)="addAsset($event)" (childTotalChange)="update($event)" [properties]="assets"></property>
+<property category="Liabilities" (add)="addLiability($event)" (childTotalChange)="update($event)" [properties]="liabilities"></property>

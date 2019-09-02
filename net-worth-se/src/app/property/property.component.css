@@ -1,0 +1,29 @@
+section {
+    border-bottom: 2px solid var(--outline-color);
+    align-items: stretch;
+}
+
+section > div {
+    margin-top: 1em;
+}
+
+aside {
+    margin-bottom: 1em;
+}
+
+h2:first-of-type {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+section > div, .add-slider {
+    margin-bottom: 1em;
+}
+
+.add-slider > input[type='text'] {
+    width: 50%;
+    font-size: 14px;
+    border-radius: 5px;
+    border: 1px solid var(--outline-color);
+    padding: .25em;
+}

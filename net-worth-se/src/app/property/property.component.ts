@@ -2,12 +2,12 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { DataService } from '../data.service';
 
 @Component({
-  selector: 'sheet-form',
-  templateUrl: './sheet-form.component.html',
-  styleUrls: ['./sheet-form.component.css']
+  selector: 'property',
+  templateUrl: './property.component.html',
+  styleUrls: ['./property.component.css']
 })
 
-export class SheetFormComponent implements OnInit {
+export class PropertyComponent implements OnInit {
   @Input() properties: Array<Object>;
   @Input() category: String;
   @Output() childTotalChange = new EventEmitter<number>();
@@ -29,14 +29,14 @@ export class SheetFormComponent implements OnInit {
       this.dataService.addResource(this.category.toLowerCase(), {name: this.newResource}).subscribe(data => {
         this.add.emit(data);
         this.newResource = "";
+        this.showForm = false;
       });
     }
-    
   }
 
   updateProperty(v: number) {
     this.total += v;
-    this.childTotalChange.emit(v);
+    this.childTotalChange.emit(this.category === "Assets" ? v : -1*v);
   }
 
   deleteProperty(o: Array<Object>) {

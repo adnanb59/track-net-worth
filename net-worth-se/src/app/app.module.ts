@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { ContainerComponent } from './container/container.component';
-import { SheetFormComponent } from './sheet-form/sheet-form.component';
+import { PropertyComponent } from './property/property.component';
 import { ResourceComponent } from './resource/resource.component';
 import { ItemComponent } from './item/item.component';
 import { CreditsComponent } from './credits/credits.component';
@@ -21,7 +21,7 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     ContainerComponent,
-    SheetFormComponent,
+    PropertyComponent,
     ResourceComponent,
     ItemComponent,
     CreditsComponent
