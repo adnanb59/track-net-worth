@@ -18,7 +18,7 @@
     max-width: 60%;
 }
 
-input:first-child {
+input:not(:last-child), select {
     margin-right: .5em;
 }
 
@@ -28,4 +28,9 @@ input:first-child {
 
 h3 {
     margin: 0;
+}
+
+.submit-disabled {
+    color: gray;
+    border-color: gray;
 }

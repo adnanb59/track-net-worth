@@ -11,8 +11,10 @@ import java.util.Map;
 @Component
 public class Service {
     private Map<String, Property> repo;
+    private String currency;
 
     public Service() {
+        currency = "CAD";
         repo = new HashMap<String, Property>();
         repo.put("assets", new Property("assets"));
         repo.get("assets").addResource(new Resource("Cash and Investments"));
@@ -95,5 +97,13 @@ public class Service {
             this.repo.put(type, ret);
         }
         return exists;
+    }
+
+    public String getCurrentCurrency() {
+        return this.currency;
+    }
+
+    public void setCurrency(String curr) {
+        this.currency = curr;
     }
 }

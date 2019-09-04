@@ -22,6 +22,18 @@ public class Controller {
         this.service = service;
     }
 
+    @GetMapping(path = "/currencies")
+    public Map<String, String> getCurrency(@PathVariable String type) {
+        Map<String, String> ret = new HashMap<String, String>();
+        ret.put("currency", this.service.getCurrentCurrency());
+        return ret;
+    }
+
+    @PatchMapping(path = "/currencies", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void updateCurrency(@PathVariable String type, @RequestBody Map<String, String> curr) {
+        this.service.setCurrency(curr.get("currency"));
+    }
+
     @GetMapping()
     public Iterable<Resource> getResources(@PathVariable String type) throws UnsupportedEncodingException {
         return this.service.getResources(type);

@@ -1,7 +1,7 @@
 <article class="container">
   <section class="flex flex-column container-child">
     <div class="flex flex-space-btwn">
-      <h2>{{category}}</h2>
+      <h2 i18n>{{category}}</h2>
       <input type="button" class="sheet-button" (click)="showForm = !showForm" value="{{!showForm ? 'Show' : 'Hide'}} Add Resource Form"/>
     </div>
     <aside *ngIf="showForm" class="flex flex-end">
@@ -9,9 +9,9 @@
       <input *ngIf="showForm" type="button" class="sheet-button" (click)="addProperty()" value="Submit"/>
     </aside>
   </section>
-  <resource *ngFor="let prop of properties" (delete)="deleteProperty($event)" (updateTotal)="updateProperty($event)" [parent]="category.toLowerCase()" [property]="prop.key" [items]="prop.items" [total]="prop.total"></resource>
+  <resource *ngFor="let prop of properties" (delete)="deleteProperty($event)" (updateTotal)="updateProperty($event)" [parent]="category.toLowerCase()" [property]="prop.key" [items]="prop.items" [total]="prop.total" [currency]="currency" [rate]="rate"></resource>
   <div class="flex flex-space-btwn container-child">
-    <h2>Total {{category}}</h2>
-    <h2>{{total | currency:'':''}}</h2>
+    <h2 i18n>Total {{category}}</h2>
+    <h2>{{total*rate | currency:currency}}</h2>
   </div>
 </article>

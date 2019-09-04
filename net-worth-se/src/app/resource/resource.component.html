@@ -2,13 +2,17 @@
   <section class="flex flex-space-btwn">
     <h3>{{property}}</h3>
     <div class="flex header-section">
-      <input type="button" class="sheet-button" (click)="showNewForm = !showNewForm" value="{{!showNewForm ? 'Show' : 'Hide'}} Add Item Form"/>
-      <input type="button" class="sheet-button" (click)="deleteResource()" value="Delete {{property}}"/>
+      <input type="button" class="sheet-button" (click)="showNewForm = !showNewForm" value="{{!showNewForm ? 'Show' : 'Hide'}} Add Item Form" i18n-value/>
+      <input type="button" class="sheet-button" (click)="deleteResource()" value="Delete {{property}}" i18n/>
     </div>
   </section>
   <aside *ngIf="showNewForm" class="flex flex-end add-input-aside">
-    <input class="add-input" *ngIf="showNewForm" [(ngModel)]="newItem" type="text"/>
-    <input type="button" *ngIf="showNewForm" class="sheet-button" (click)="addItem()" value="Submit" [disabled]="checkValidNewItem()"/>
+    <input class="add-input" *ngIf="showNewForm" [(ngModel)]="form.item" type="text" placeholder="Item name..." i18n-placeholder/>
+    <input class="add-input" *ngIf="showNewForm" [(ngModel)]="form.value" type="number" min="0" pattern="^\d*.\d{0,2}$" placeholder="Item value..." i18n-placeholder/>
+    <select class="sheet-button" [(ngModel)]="form.currency">
+      <option *ngFor="let c of currencies | keyvalue" [ngValue]="c.value">{{c.key}}</option>
+    </select>
+    <input [ngClass]="{'submit-disabled': checkInvalidNewItem()}" type="button" *ngIf="showNewForm" class="sheet-button" (click)="addItem()" value="Submit" [disabled]="checkInvalidNewItem()" i18n-value/>
   </aside>
-  <item *ngFor="let item of items" (itemUpdate)="updateItem($event)" (itemDelete)="deleteItem($event)" [item]="item.label" [value]="item.value"></item>
+  <item *ngFor="let item of items" (itemUpdate)="updateItem($event)" (itemDelete)="deleteItem($event)" [item]="item.label" [value]="item.value" [currencies]="currencies" [currency]="currency" [rate]="rate"></item>
 </section>

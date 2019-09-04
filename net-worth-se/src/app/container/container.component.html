@@ -1,10 +1,12 @@
 <nav class="top-level-content">
-    <h2>Currency</h2>
-    <h2>CAD</h2>
+    <h2 i18n>Currency</h2>
+    <select class="sheet-button" [ngModel]="curr" (ngModelChange)="updateRate($event)">
+        <option *ngFor="let r of rates | keyvalue" [selected]="r.key === curr" [value]="r.key">{{r.key}}</option>
+    </select>
 </nav>
 <article class="top-level-content container" id="net-worth">
-    <h2>Net Worth</h2>
-    <h2>{{total | currency:'CAD':''}}</h2> 
+    <h2 i18n>Net Worth</h2>
+    <h2>{{total*rate | currency:curr}}</h2> 
 </article>
-<property category="Assets" (add)="addAsset($event)" (childTotalChange)="update($event)" [properties]="assets"></property>
-<property category="Liabilities" (add)="addLiability($event)" (childTotalChange)="update($event)" [properties]="liabilities"></property>
+<property category="Assets" (add)="addAsset($event)" (childTotalChange)="update($event)" [properties]="assets" [currency]="curr" [rate]="rate"></property>
+<property category="Liabilities" (add)="addLiability($event)" (childTotalChange)="update($event)" [properties]="liabilities" [currency]="curr" [rate]="rate"></property>

@@ -11,32 +11,43 @@ export class ResourceComponent implements OnInit {
   @Input() items: Array<Object>;
   @Input() parent: string;
   @Input() total: number;
+  @Input() currency: string;
+  @Input() rate: number;
   @Output() updateTotal = new EventEmitter<number>();
   @Output() delete = new EventEmitter<Object>();
-  public newItem: string;
+  
+  public form: object = {};
+
   public showNewForm: boolean;
+  public currencies: Object;
 
   constructor(private dataService: DataService) { }
 
   ngOnInit() {
-    this.newItem = "";
     this.showNewForm = false;
+    this.dataService.getCurrencies().subscribe(data => {
+      this.currencies = data['rates'];
+    })
   }
 
   addItem() {
-    console.log(this.newItem);
-    if (this.newItem != "") {
-      this.dataService.addItem(this.parent, this.property, {[this.newItem]: 0}).subscribe((data: any) => {
-        this.items = data.items;
-        this.newItem = "";
-        this.showNewForm = false;
-      });
-    }
+    let v = Math.round(this.form['value']*this.form['currency']*100)/100;
+    this.dataService.addItem(this.parent, this.property, {[this.form['item']]: v}).subscribe((data: any) => {
+      this.items = data['items'];
+      this.form = {};
+      this.total = data['total'];
+      this.updateTotal.emit(v);
+      this.showNewForm = false;
+    });
   }
 
-  checkValidNewItem() {
-    let c = this.newItem === "" || this.items.findIndex(item => item['label'] === this.newItem) != -1;
-    return c;
+  checkInvalidNewItem() {
+    if (!this.form.hasOwnProperty('item') || !this.form['item']) return true;
+    else if (!this.form.hasOwnProperty('currency') || !this.form['currency']) return true;
+    else if (!this.form.hasOwnProperty('value') || !this.form['value']) return true;
+    else if (this.items.findIndex(item => item['label'] === this.form['item'].trim()) != -1) return true;
+    else if (this.form['value'] < 0 || ((this.form['value'] * 10000) / 100) % 1 != 0) return true;
+    else return false;
   }
 
   deleteItem(s: string) {

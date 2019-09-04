@@ -10,6 +10,8 @@ import { DataService } from '../data.service';
 export class PropertyComponent implements OnInit {
   @Input() properties: Array<Object>;
   @Input() category: String;
+  @Input() currency: string;
+  @Input() rate: number;
   @Output() childTotalChange = new EventEmitter<number>();
   @Output() add = new EventEmitter<Object>();
   public showForm: Boolean;
